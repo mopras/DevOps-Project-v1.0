@@ -15,4 +15,11 @@ EXPOSE 3000
 
 # Run the app
 CMD ["node", "app.js"]
+FROM jenkins/jenkins:lts
+
+# Skip setup wizard
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+
+# Copy the Groovy script
+COPY basic-security.groovy /usr/share/jenkins/ref/init.groovy.d/basic-security.groovy
 
